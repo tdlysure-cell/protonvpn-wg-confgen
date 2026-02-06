@@ -2,7 +2,11 @@
 package config
 
 import (
-	"flag"
+	"flag" 
+	// existing flags...
+    flag.BoolVar(&cfg.FreeOnly, "free-only", false, "Use only Free tier servers (tier 0)")
+    // 新增：
+    flag.BoolVar(&cfg.ListAllServers, "list-all-servers", false, "List all servers from API (ignore -countries filter) and exit")
 	"fmt"
 	"os"
 	"strings"
