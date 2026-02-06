@@ -13,6 +13,8 @@ type Config struct {
 	P2PServersOnly bool
 	SecureCoreOnly bool
 	FreeOnly       bool
+	// New flag: list all servers (bypass country filter and just print)
+    ListAllServers bool `json:"-"`
 
 	// Output configuration
 	OutputFile       string
