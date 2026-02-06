@@ -102,3 +102,18 @@ func run() error {
 
 	return nil
 }
+
+// printAllServers prints detailed information about every logical server and its physical servers.
+func printAllServers(servers []api.LogicalServer) {
+    fmt.Printf("Total logical servers from API: %d\n\n", len(servers))
+    for _, ls := range servers {
+        feat := api.GetFeatureNames(ls.Features)
+        fmt.Printf("Logical: %s | ExitCountry: %s | City: %s | Tier: %s | Status: %s | Features: %v | #Physical: %d\n",
+            ls.Name, ls.ExitCountry, ls.City, api.GetTierName(ls.Tier), ls.Status, feat, len(ls.Servers))
+        for i, ps := range ls.Servers {
+            fmt.Printf("  [%d] Physical ID: %s | EntryIP: %s | ExitIP: %s | PublicKey: %s | Status: %s\n",
+                i+1, ps.ID, ps.EntryIP, ps.ExitIP, ps.X25519PublicKey, ps.Status)
+        }
+        fmt.Println("--------------------------------------------------------------------------------")
+    }
+}
